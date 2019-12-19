@@ -1,0 +1,23 @@
+# This is a sample build configuration for PHP.
+# Check our guides at https://confluence.atlassian.com/x/VYk8Lw for more examples.
+# Only use spaces to indent your .yml configuration.
+# -----
+# You can specify a custom docker image from Docker Hub as your build environment.
+image: php:7.1
+
+pipelines:
+  default:
+    - step:
+        script: # Modify the commands below to build your repository.
+          - apt-get update
+          - apt-get -y install ssh
+          - mkdir ~/.ssh
+          - ssh-keyscan -t rsa bitbucket.org 104.192.143.3  104.192.143.2  104.192.143.1 > ~/.ssh/known_hosts
+          - (umask  077 ; echo $MYSSHKEY | base64 --decode > ~/.ssh/id_rsa)
+          - apt-get install -y wget git librabbitmq-dev
+          - echo "/usr" | pecl install -f amqp
+          - echo "extension=amqp.so" > /usr/local/etc/php/conf.d/40-amqp.ini
+          - wget https://getcomposer.org/composer.phar
+          - php composer.phar --version
+          - php composer.phar install
+          - php vendor/bin/php-cs-fixer -v fix --config=$BITBUCKET_CLONE_DIR/.php_cs --dry-run

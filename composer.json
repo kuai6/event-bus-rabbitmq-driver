@@ -1,0 +1,42 @@
+{
+  "name": "kuai6/event-bus-rabbitmq-driver",
+  "description": "RabbitMQ Driver for Event Bus library",
+  "homepage": "https://github.com/kuai6/event-bus-rabbitmq-driver",
+  "type": "library",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Aleksei I. Kuleshov",
+      "email": "kuai6@ya.ru",
+      "role": "master"
+    }
+  ],
+  "require": {
+    "php": "~7.2 || ~7.3",
+    "kuai6/event-bus": "^1.0"
+  },
+  "require-dev": {
+    "ext-amqp": "^1.7.0",
+    "phpunit/phpunit": "^5.7",
+    "phpunit/phpcov": "^3.1",
+    "friendsofphp/php-cs-fixer": "^2.0"
+  },
+  "autoload": {
+    "psr-4": {
+      "Kuai6\\EventBus\\RabbitMQ\\Driver\\": "lib/"
+    },
+    "classmap": [
+      "lib/"
+    ]
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Kuai6\\EventBus\\RabbitMQ\\Driver\\Test\\": "tests/phpunit/Test"
+    }
+  },
+  "scripts": {
+    "cs-check": "php-cs-fixer -v fix --config=.php_cs  --dry-run --diff",
+    "cs-fix": "php-cs-fixer -v fix --config=.php_cs --diff",
+    "test": "vendor/bin/phpunit"
+  }
+}

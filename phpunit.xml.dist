@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<phpunit colors="true"
+         convertErrorsToExceptions="true"
+         convertNoticesToExceptions="true"
+         convertWarningsToExceptions="true"
+         verbose="true"
+         stopOnFailure="false"
+         processIsolation="false"
+         backupGlobals="false"
+         syntaxCheck="true"
+>
+    <testsuites>
+        <testsuite name="Event Bus Driver RabbitMQ Tests">
+            <directory>./tests/phpunit/Test</directory>
+        </testsuite>
+    </testsuites>
+
+    <filter>
+        <blacklist>
+            <directory>./vendor</directory>
+            <directory>./tests</directory>
+        </blacklist>
+        <whitelist>
+            <directory>./lib</directory>
+        </whitelist>
+    </filter>
+    <!--    <logging>
+            <log type="coverage-php" target="./.reports/coverage/coverage-phpunit.cov"/>
+        </logging>-->
+</phpunit>
