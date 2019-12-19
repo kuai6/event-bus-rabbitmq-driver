@@ -9,7 +9,7 @@ cache:
   directories:
     - $HOME/.composer/cache
 
-install: composer install --no-interaction
+install: composer install --no-interaction --ignore-platform-reqs
 
 script:
   - composer cs-check
